@@ -23,9 +23,9 @@ public class View {
         System.out.println("Logar como:");
         System.out.println("1- Gerente");
         System.out.println("2- Vendedor");
-        int opLogin = sc.nextInt();
+        String opLogin = sc.next();sc.nextLine();
         switch(opLogin) {
-            case 1 -> {
+            case "1" -> {
                 System.out.println("Entre com sua senha");
                 String senhaGerente = sc.next();
                 String[] retornoGerente = ctr.autenticarGerente(senhaGerente);
@@ -42,7 +42,7 @@ public class View {
                     System.out.println(retornoGerente[1]);
                 }
             }
-            case 2 -> {
+            case "2" -> {
                 System.out.println("Entre com seu CPF:");
                 String cpfVendedor = sc.next();
                 String[] retornoVendedor = ctr.autenticarVendedor(cpfVendedor);
@@ -59,6 +59,9 @@ public class View {
                     System.out.println(retornoVendedor[1]);
                 }
             }
+            default -> {
+                System.out.println("Opção inválida.");
+            }
         }
     }
     
@@ -74,10 +77,10 @@ public class View {
         System.out.println("8 - Remover veiculo");
         System.out.println("9 - Voltar ao menu inicial");
         System.out.print("Selecione uma opção: ");
-        int opGerente = sc.nextInt();
+        String opGerente = sc.next();sc.nextLine();
         System.out.println();
         switch(opGerente) {
-            case 1 -> {
+            case "1" -> {
                 System.out.println("Insira o CPF do vendedor");
                 String cpfVendedor = sc.next();sc.nextLine();
                 System.out.println("Insira o nome do vendedor");
@@ -94,14 +97,14 @@ public class View {
                     System.out.println("Este CPF já está cadastrado.");
                 }
             }
-            case 2 -> {
+            case "2" -> {
                 System.out.println("Qual tipo de veículo será cadastrado? ");
                 System.out.println("1 - Carro");
                 System.out.println("2 - Moto");
                 System.out.println("3 - Caminhão");
-                int opTipoVeiculo = sc.nextInt();sc.nextLine();
+                String opTipoVeiculo = sc.next();sc.nextLine();
                 switch(opTipoVeiculo) {
-                    case 1 -> {
+                    case "1" -> {
                         System.out.print("Insira a placa do carro: ");
                         String placa = sc.next();sc.nextLine();
                         System.out.print("Insira o modelo: ");
@@ -127,7 +130,7 @@ public class View {
                             System.out.println("Essa placa já está cadastrada no sistema");
                         }
                     }
-                    case 2 -> {
+                    case "2" -> {
                         System.out.print("Insira a placa da moto: ");
                         String placa = sc.next();sc.nextLine();
                         System.out.print("Insira o modelo: ");
@@ -151,7 +154,7 @@ public class View {
                             System.out.println("Essa placa já está cadastrada no sistema");
                         }
                     }
-                    case 3 -> {
+                    case "3" -> {
                         System.out.print("Insira a placa do caminhão: ");
                         String placa = sc.next();sc.nextLine();
                         System.out.print("Insira o modelo: ");
@@ -179,28 +182,31 @@ public class View {
                             System.out.println("Essa placa já está cadastrada no sistema");
                         }
                     }
+                    default -> {
+                        System.out.println("Opção inválida");
+                    }
                 }
                 
             }
-            case 3 -> {
+            case "3" -> {
                 ArrayList<String> listaVendedores = ctr.listarVendedores();
                 for(String v: listaVendedores) {
                     System.out.println(v);
                 }
             }
-            case 4 -> {
+            case "4" -> {
                 ArrayList<String> listaVeiculos = ctr.listarVeiculos();
                 for(String v: listaVeiculos) {
                     System.out.println(v);
                 }
             }
-            case 5 -> {
+            case "5" -> {
                 ArrayList<String> listaVendas = ctr.listarVendas();
                 for(String ve: listaVendas) {
                     System.out.println(ve);
                 }
             }
-            case 6 -> {
+            case "6" -> {
                 System.out.print("Insira o código da venda para liberá-la: ");
                 int codVenda = sc.nextInt();sc.nextLine();
                 if(ctr.liberarVenda(codVenda)) {
@@ -210,7 +216,7 @@ public class View {
                     System.out.println("Código de venda inválido.");
                 }
             }
-            case 7 -> {
+            case "7" -> {
                 System.out.print("Insira o código da venda para removê-la: ");
                 int codVenda = sc.nextInt();sc.nextLine();
                 if(ctr.removerVenda(codVenda)) {
@@ -220,7 +226,7 @@ public class View {
                     System.out.println("Venda número " + codVenda + " não encontrada.");
                 }
             }
-            case 8 -> {
+            case "8" -> {
                 System.out.print("Insira a placa do veículo a ser removido: ");
                 String placa = sc.next();sc.nextLine();
                 if(ctr.removerVeiculo(placa)) {
@@ -231,8 +237,11 @@ public class View {
                     System.out.println("Veículo não encontrado.");
                 }
             }
-            case 9 -> {
+            case "9" -> {
                 return 1;
+            }
+            default -> {
+                System.out.println("Opção inválida");
             }
         }
         return 0;
@@ -245,10 +254,10 @@ public class View {
         System.out.println("3 - Realizar venda");
         System.out.println("4 - Voltar ao menu inicial");
         System.out.print("Selecione sua opção: ");
-        int opVendedor = sc.nextInt();
+        String opVendedor = sc.next();sc.nextLine();
         System.out.println();
         switch(opVendedor) {
-            case 1 -> {
+            case "1" -> {
                 System.out.println("Insira o CPF do cliente");
                 String cpfCliente = sc.next();sc.nextLine();
                 System.out.println("Insira o nome do cliente");
@@ -266,13 +275,13 @@ public class View {
                 }
             }
             
-            case 2 -> {
+            case "2" -> {
                 ArrayList<String> listaClientes = ctr.listarClientes();
                 for(String c: listaClientes) {
                     System.out.println(c);
                 }
             }
-            case 3 -> {
+            case "3" -> {
                 System.out.print("Digite o CPF do cliente: ");
                 String cpfCliente = sc.next();sc.nextLine();
                 System.out.print("Digite a placa do veículo: ");
@@ -282,8 +291,11 @@ public class View {
                 String[] retornoVenda = ctr.realizarVenda(placaVeiculo, cpfCliente, cpfVendedor, desconto);
                 System.out.println(retornoVenda[1]);
             }
-            case 4 -> {
+            case "4" -> {
                 return 1;
+            }
+            default -> {
+                System.out.println("Opção inválida");
             }
         }
         return 0;
